@@ -144,6 +144,7 @@ export default function Banner() {
     fill
     priority
     className="object-cover"
+    sizes="(min-width: 1280px) 100vw, (min-width: 1024px) 100vw, 100vw"
   />
 </div>
 
@@ -155,8 +156,10 @@ export default function Banner() {
     fill
     priority
     className="object-cover"
+sizes="(min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw"
   />
 </div>
+
 
       {/* Enquiry Form */}
       <div
