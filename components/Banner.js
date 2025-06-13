@@ -13,25 +13,23 @@ const bannerImage = {
   src: "/assets/banner.webp",
   alt: "Real Estate Banner",
 };
-
+const mobImage = {
+  src: "/assets/banner.webp",
+  alt: " Estate Banner",
+};
 // Property type options
-const propertyTypes = [
-  "Villa",
-  "Apartment", 
-  "Penthouse",
-  "Townhouse"
-];
+const propertyTypes = ["Villa", "Apartment", "Penthouse", "Townhouse"];
 
 // Budget options
 const budgetOptions = [
   "Under $500,000",
-  "$500,000 - $700,000", 
-  "$700,000 and Above"
+  "$500,000 - $700,000",
+  "$700,000 and Above",
 ];
 
 export default function Banner() {
   const router = useRouter();
-  
+
   /* ――― State & helpers ――― */
   const [urlParams, setUrlParams] = useState({
     utm_ad: "",
@@ -82,7 +80,9 @@ export default function Banner() {
       fullName: Yup.string().required("Full name is required"),
       phone: Yup.string().required("Phone number is required"),
       email: Yup.string().email("Invalid email").required("Email is required"),
-      lookingFor: Yup.string().required("Please select what you're looking for"),
+      lookingFor: Yup.string().required(
+        "Please select what you're looking for"
+      ),
       budget: Yup.string().required("Please select your budget range"),
       terms: Yup.boolean().oneOf([true], "You must accept the terms"),
     }),
@@ -136,19 +136,33 @@ export default function Banner() {
 
   return (
     <div className="relative w-full overflow-hidden">
-      {/* Banner image */}
-      <div className="relative w-full aspect-[16/9] xl:h-[100vh] lg:aspect-[19/9]">
-        <Image
-          src={bannerImage.src}
-          alt={bannerImage.alt}
-          fill
-          priority
-          className="object-cover"
-        />
-      </div>
+     {/* Desktop Banner */}
+<div className="hidden md:block relative w-full aspect-[16/9] xl:h-[100vh] lg:aspect-[19/9]">
+  <Image
+    src={bannerImage.src}
+    alt={bannerImage.alt}
+    fill
+    priority
+    className="object-cover"
+  />
+</div>
+
+{/* Mobile Banner */}
+<div className="block md:hidden relative w-full aspect-[16/9]">
+  <Image
+    src={mobImage.src}
+    alt={mobImage.alt}
+    fill
+    priority
+    className="object-cover"
+  />
+</div>
 
       {/* Enquiry Form */}
-      <div id="form" className="w-full px-2 pb-1 sm:px-6 xl:px-10 xl:absolute xl:top-[7vw] xl:right-[11vw] xl:justify-end z-20 flex justify-center mt-4 lg:mt-0">
+      <div
+        id="form"
+        className="w-full px-2 pb-1 sm:px-6 xl:px-10 xl:absolute xl:top-[7vw] xl:right-[11vw] xl:justify-end z-20 flex justify-center mt-4 lg:mt-0"
+      >
         <div className="w-full lg:max-w-full xl:max-w-[400px]">
           <div className="bg-white rounded-xl lg:shadow-xl p-4 sm:p-5 md:p-4 lg:p-2 xl:p-5 border border-gray-100">
             {/* Header */}
@@ -166,9 +180,7 @@ export default function Banner() {
             {status && (
               <div
                 className={`text-center font-medium mb-4 text-sm ${
-                  status.includes("success")
-                    ? "text-green-600"
-                    : "text-red-600"
+                  status.includes("success") ? "text-green-600" : "text-red-600"
                 }`}
               >
                 {status}
@@ -227,14 +239,14 @@ export default function Banner() {
               {/* Phone with react-phone-input-2 */}
               <div>
                 <PhoneInput
-                  country={'us'}
+                  country={"us"}
                   value={formik.values.phone}
-                  onChange={(phone) => formik.setFieldValue('phone', phone)}
-                  onBlur={() => formik.setFieldTouched('phone', true)}
+                  onChange={(phone) => formik.setFieldValue("phone", phone)}
+                  onBlur={() => formik.setFieldTouched("phone", true)}
                   inputProps={{
-                    name: 'phone',
+                    name: "phone",
                     required: true,
-                    placeholder: 'Phone Number *'
+                    placeholder: "Phone Number *",
                   }}
                   containerClass={`w-full ${
                     formik.touched.phone && formik.errors.phone
@@ -245,7 +257,11 @@ export default function Banner() {
                     formik.touched.lookingFor && formik.errors.lookingFor
                       ? "!border-red-500 1bg-red-50"
                       : "!border-gray-300"
-                  } ${formik.values.lookingFor ? "!text-gray-800" : "!text-gray-500"}`}
+                  } ${
+                    formik.values.lookingFor
+                      ? "!text-gray-800"
+                      : "!text-gray-500"
+                  }`}
                   buttonClass="!m-[1px] !bg-white !rounded-lg"
                 />
                 {formik.touched.phone && formik.errors.phone && (
@@ -266,7 +282,9 @@ export default function Banner() {
                     formik.touched.lookingFor && formik.errors.lookingFor
                       ? "border-red-500 bg-red-50"
                       : "border-gray-300"
-                  } ${formik.values.lookingFor ? "text-gray-800" : "text-gray-500"}`}
+                  } ${
+                    formik.values.lookingFor ? "text-gray-800" : "text-gray-500"
+                  }`}
                 >
                   <option value="" disabled>
                     What are you looking for? *
@@ -295,7 +313,9 @@ export default function Banner() {
                     formik.touched.budget && formik.errors.budget
                       ? "border-red-500 bg-red-50"
                       : "border-gray-300"
-                  } ${formik.values.budget ? "text-gray-800" : "text-gray-500"}`}
+                  } ${
+                    formik.values.budget ? "text-gray-800" : "text-gray-500"
+                  }`}
                 >
                   <option value="" disabled>
                     What is your budget? *
