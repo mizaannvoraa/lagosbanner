@@ -10,11 +10,11 @@ import "react-phone-input-2/lib/style.css";
 
 // Banner image
 const bannerImage = {
-  src: "/assets/desk.jpeg",
+  src: "/assets/lagosdesk.jpeg",
   alt: "Desktop Banner",
 };
 const mobImage = {
-  src: "/assets/mob.jpeg",
+  src: "/assets/lagosmob.jpeg",
   alt: " Mobile Banner",
 };
 // Property type options
@@ -136,7 +136,6 @@ export default function Banner() {
         referrer: typeof window !== "undefined" ? document.referrer : "",
       };
 
-      console.log("Submitting form data:", formData);
 
       try {
         // Convert to x‑www‑form‑urlencoded for Apps Script
@@ -145,10 +144,9 @@ export default function Banner() {
           body.append(key, String(value || ""));
         });
 
-        console.log("Form body:", body.toString());
 
         const response = await fetch(
-          "https://script.google.com/macros/s/AKfycbyQuMNcPnR6egxnNFuVi9vAMjPinSvi_ZUnXUux_rOp2wW1nIxmc2r1Ejeat4zcmpc5zg/exec",
+          "https://script.google.com/macros/s/AKfycbzuhJDxvpamy_JnzGowhsxlvVHbVfN0iiKRXcd6faX0y2sZEbKJ8SJvZeyxB9ZVoN5z/exec",
           {
             method: "POST",
             mode: "no-cors", // Note: This prevents reading the response
@@ -161,7 +159,6 @@ export default function Banner() {
 
         // Since mode is 'no-cors', we can't read the response
         // We'll assume success if no error is thrown
-        console.log("Form submitted successfully");
         resetForm();
         
         // Redirect after successful submission
@@ -183,7 +180,7 @@ export default function Banner() {
   return (
     <div className="relative w-full overflow-hidden">
       {/* Desktop Banner */}
-      <div className="hidden lg:block relative w-full aspect-[16/9] xl:h-[100vh] lg:aspect-[19/9]">
+      <div className="hidden lg:block relative w-full aspect-[16/9] lg:aspect-[19/9]">
         <Image
           src={bannerImage.src}
           alt={bannerImage.alt}
@@ -208,7 +205,7 @@ export default function Banner() {
       {/* Enquiry Form */}
       <div
         id="form"
-        className="w-full px-2 pb-1 sm:px-6 xl:px-10 xl:absolute xl:top-[5vw] xl:right-[11vw] xl:justify-end z-20 flex justify-center lg:mt-4 lg:mt-0"
+        className="w-full px-2 pb-1 sm:px-6 xl:px-10 xl:absolute xl:top-[5vw] xl:right-[11vw] xl:justify-end z-20 flex justify-center lg:mt-4 "
       >
         <div className="w-full lg:max-w-full xl:max-w-[400px]">
           <div className="bg-white lg:rounded-xl lg:shadow-xl p-4 sm:p-5 md:p-4 lg:p-2 xl:p-5 md:border border-gray-100">
@@ -250,7 +247,7 @@ export default function Banner() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.fullName}
-                  className={`w-full border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
+                  className={`w-full border rounded-lg !text-gray-800 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
                     formik.touched.fullName && formik.errors.fullName
                       ? "border-red-500 bg-red-50"
                       : "border-gray-300"
@@ -272,7 +269,7 @@ export default function Banner() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
-                  className={`w-full border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
+                  className={`w-full border rounded-lg px-3 !text-gray-800 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
                     formik.touched.email && formik.errors.email
                       ? "border-red-500 bg-red-50"
                       : "border-gray-300"
@@ -302,12 +299,12 @@ export default function Banner() {
                       ? "phone-error"
                       : ""
                   }`}
-                  inputClass={`!w-full border !rounded-lg px-3 !py-5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
+                  inputClass={`!w-full !text-gray-800 border !rounded-lg px-3 !py-5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
                     formik.touched.phone && formik.errors.phone
                       ? "!border-red-500 !bg-red-50"
                       : "!border-gray-300"
                   }`}
-                  buttonClass="!m-[1px] !bg-white !rounded-lg"
+                  buttonClass="!m-[1px] !text-gray-800 !bg-white !rounded-lg"
                 />
                 {formik.touched.phone && formik.errors.phone && (
                   <p className="text-red-500 text-xs mt-1">
@@ -323,7 +320,7 @@ export default function Banner() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.lookingFor}
-                  className={`w-full border rounded-lg px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
+                  className={`w-full border rounded-lg  px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
                     formik.touched.lookingFor && formik.errors.lookingFor
                       ? "border-red-500 bg-red-50"
                       : "border-gray-300"
@@ -354,7 +351,7 @@ export default function Banner() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.budget}
-                  className={`w-full border rounded-lg px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
+                  className={`w-full border rounded-lg px-3  py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
                     formik.touched.budget && formik.errors.budget
                       ? "border-red-500 bg-red-50"
                       : "border-gray-300"
